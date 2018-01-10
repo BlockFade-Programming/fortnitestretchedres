@@ -1,7 +1,7 @@
 # electron-template
-### An electron, Vue.js and Bootstrap starting point for all!
+### An electron, Vue.js and Bulma starting point for all!
 
-**Clone and run for a quick way to see Electron, Vue.js and Bootstrap in action.**
+**Clone and run for a quick way to see Electron, Vue.js and Bulma in action.**
 
 This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start) within the Electron documentation.
 
@@ -22,9 +22,9 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clone https://github.com/jcramirez/electron-template.git
+git clone https://github.com/jcramirez/electron-bulma-template.git
 # Go into the repository
-cd electron-template
+cd electron-bulma-template
 # Install dependencies
 npm install
 # Run the app
@@ -47,7 +47,5 @@ Learn more about Electron and its API in the [documentation](http://electron.ato
 For more example apps, see the
 [list of boilerplates](http://electron.atom.io/community/#boilerplates)
 created by the awesome electron community.
-
-For a basic serial monitor example app see [electron-serialmon](https://github.com/jcramirez/electron-serialmon)
 
 #### License [CC0 1.0 (Public Domain)](LICENSE.md)
