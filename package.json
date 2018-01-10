@@ -1,0 +1,39 @@
+{
+  "name": "electron-bulma-template",
+  "productName": "electron-bulma-template",
+  "version": "1.0.0",
+  "description": "An electron, Vue.js and Bulma starting point for all!",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "install": "electron-rebuild",
+    "package-all": "electron-packager .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --prune=true",
+    "package-win": "electron-packager . --overwrite --platform=win32 --prune=true --asar=true",
+    "package-linux": "electron-packager . --overwrite --platform=linux --prune=true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcramirez/electron-bulma-template.git"
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo",
+    "template"
+  ],
+  "author": "jcramirez",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-rebuild": "^1.4.0",
+    "electron-packager": "^9.0.1",
+    "standard": "*"
+  },
+  "dependencies": {
+    "bulma": "^0.6.1",
+    "vue": "^2.5.13"
+  }
+}
