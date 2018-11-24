@@ -2,17 +2,70 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 const Vue = require('./node_modules/vue/dist/vue')
+const remote = require('electron').remote
+const fs = require("fs")
+const ConfigIniParser = require("config-ini-parser").ConfigIniParser;
+const dialog = require('electron').remote.dialog
 
+var delimiter = "\r\n"; //or "\n" for *nux
+
+var gameSettingsFile = null;
+var parser;
 let vueApp = new Vue({
   el: '#app',
   data: {
-    message: 'Hola, Earth!',
-    buttonText: 'I\'m button',
-    counter: 0
+    subtitle: 'Fortnite Stretched Resolution tool',
+    w: 0,
+    origW: 0,
+    h: 0,
+    origH: 0,
+    origFrl: 60,
+    frl: 60,
+    credit: "Programmed by BlockFade",
+    active: true
+  },
+  mounted: function() {
+    gameSettingsFile = fs.readFileSync(process.env.LOCALAPPDATA + '/FortniteGame/Saved/Config/WindowsClient/GameUserSettings.ini', 'utf-8').toString();
+    this.parse();
   },
   methods: {
-    button: function () {
-      this.buttonText = `Been clicked ${++this.counter} times`
+    apply: function () {
+    this.frl = Math.round(this.frl);
+      parser.set("/Script/FortniteGame.FortGameUserSettings", "ResolutionSizeX", this.w);
+      parser.set("/Script/FortniteGame.FortGameUserSettings", "ResolutionSizeY", this.h);
+        parser.set("/Script/FortniteGame.FortGameUserSettings", "LastUserConfirmedResolutionSizeX", this.w);
+        parser.set("/Script/FortniteGame.FortGameUserSettings", "LastUserConfirmedResolutionSizeY", this.h);
+          parser.set("/Script/FortniteGame.FortGameUserSettings", "DesiredScreenWidth", this.w);
+          parser.set("/Script/FortniteGame.FortGameUserSettings", "DesiredScreenHeight", this.h);
+            parser.set("/Script/FortniteGame.FortGameUserSettings", "LastUserConfirmedDesiredScreenWidth", this.w);
+            parser.set("/Script/FortniteGame.FortGameUserSettings", "LastUserConfirmedDesiredScreenHeight", this.h);
+            parser.set("/Script/FortniteGame.FortGameUserSettings", "FrameRateLimit", this.frl);
+      console.log("Saved?");
+      fs.writeFile(process.env.LOCALAPPDATA + '/FortniteGame/Saved/Config/WindowsClient/GameUserSettings.ini', parser.stringify(delimiter), function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("The file was saved!");
+
+});
+this.active = false;
+    },
+    close: function ()
+    {
+      remote.getCurrentWindow().close();
+    },
+    parse: function()
+    {
+      parser = new ConfigIniParser(delimiter);
+      parser.parse(gameSettingsFile);
+      this.w = parser.getNumber("/Script/FortniteGame.FortGameUserSettings", "ResolutionSizeX");
+      this.origW = this.w;
+      this.h = parser.getNumber("/Script/FortniteGame.FortGameUserSettings", "ResolutionSizeY");
+      this.origH = this.h;
+      this.frl = parser.getNumber("/Script/FortniteGame.FortGameUserSettings", "FrameRateLimit");
+      this.frl = Math.round(this.frl);
+      this.origFrl = this.frl;
     }
   } // end of methods
 })

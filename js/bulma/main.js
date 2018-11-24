@@ -199,7 +199,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var whereYouStoppedScrolling = 0
   var scrollFactor = 0
   var currentTranslate = 0
-
+if(navbarBurger != null)
+{
   navbarBurger.addEventListener('click', function (el) {
     navbarOpen = !navbarOpen
 
@@ -209,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
       rootEl.classList.remove('bd-is-clipped-touch')
     }
   })
-
+}
   function upOrDown (lastY, currentY) {
     if (currentY >= lastY) {
       return goingDown(currentY)

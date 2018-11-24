@@ -15,17 +15,15 @@ let mainWindow
  */
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1200, height: 600})
-
+  mainWindow = new BrowserWindow({width: 600, height: 400, frame: false, icon: __dirname + '/icon.ico'
+  });
+  //mainWindow.openDevTools();
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
-  }))
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  }));
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -34,6 +32,7 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+  mainWindow.setMenu(null);
 }
 
 // This method will be called when Electron has finished
@@ -47,6 +46,7 @@ app.on('window-all-closed', function () {
   // to stay active until the user quits explicitly with Cmd + Q
   app.quit()
 })
+
 
 app.on('activate', function () {
   // On OS X it's common to re-create a window in the app when the

@@ -1,31 +1,18 @@
 {
-  "name": "electron-bulma-template",
-  "productName": "electron-bulma-template",
+  "name": "blockfades-fortnite-stretched-resolution-tool",
+  "productName": "Fortnite Stretched Resolution Tool",
   "version": "1.0.0",
-  "description": "An electron, Vue.js and Bulma starting point for all!",
+  "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "install": "electron-rebuild",
     "package-all": "electron-packager .",
     "package-mac": "electron-packager . --overwrite --platform=darwin --prune=true",
-    "package-win": "electron-packager . --overwrite --platform=win32 --prune=true --asar=true",
+    "package-win": "electron-packager . --icon=icon.ico --asar --platform=win32 --win32metadata.requested-execution-level=requireAdministrator --overwrite",
     "package-linux": "electron-packager . --overwrite --platform=linux --prune=true"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jcramirez/electron-bulma-template.git"
-  },
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo",
-    "template"
-  ],
-  "author": "jcramirez",
-  "license": "CC0-1.0",
+  "author": "BlockFade",
   "devDependencies": {
     "electron": "^1.4.1",
     "electron-rebuild": "^1.4.0",
@@ -34,6 +21,13 @@
   },
   "dependencies": {
     "bulma": "^0.6.1",
+    "config-ini-parser": "^1.2.0",
+    "ini": "^1.3.5",
     "vue": "^2.5.13"
+  },
+  "build": {
+    "win": {
+      "requested-execution-level": "highestAvailable"
+    }
   }
 }
