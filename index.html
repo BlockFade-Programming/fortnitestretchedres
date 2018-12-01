@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- Add the responsive viewport meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Fortnite Stretched Resolution tool</title>
+
+    <!-- If you want to use icons with Bulma, don't forget to include Font Awesome: -->
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+
+    <!-- bulma import -->
+    <link rel="stylesheet" href="./node_modules/bulma/css/bulma.css">
+
+    <style>
+      /* prevents seeing those {{variable}} before Vue.js is ready to render */
+      [v-cloak] {
+        display: none;
+      }
+
+      /* This is done so that the entire body fills the available
+         height and width of the electron window */
+      body {
+        width: 100vw;
+        height: 100vh;
+        margin:0;
+        background-color: white;
+        overflow:hidden;
+      }
+      body::-webkit-scrollbar { width: 0 !important }
+      html::-webkit-scrollbar { width: 0 !important }
+      #app
+      {
+        -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+        width: 100vw;
+        height: 100vh;
+        margin:0;
+        overflow:hidden;
+      }
+      .drag
+    {
+      top:0;
+      left:0;
+      width:100%;
+      -webkit-app-region: drag;
+      border-style: none;
+    }
+      .close
+      {
+        position:fixed;
+        top:0;
+border-top-right-radius: 0px;
+border-top-left-radius: 0px;
+border-bottom-right-radius: 0px;
+        right:0px;
+    -webkit-app-region: no-drag;
+      }
+      .label{
+        opacity:.75;
+        font-weight: normal;
+      }
+      .credit
+      {
+        position: absolute;
+        opacity: .5;
+        bottom:0;
+        right:0;
+      }
+      .cx
+      {
+        margin-top:24px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div id="app" v-cloak>
+      <div class="button drag">
+<a class="button close is-dark" v-on:click="close">&times;</a>
+</div>
+      <section class="section" v-if="active">
+        <h4 class="title is-4">{{subtitle}}</p>
+    <div class="container cx">
+      <div class="field">
+        <label class="label">Width</label>
+        <div class="control">
+          <input class="input" v-model="w" type="number" v-bind:placeholder="origW"/>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Height</label>
+        <div class="control">
+          <input class="input" v-model="h" type="number" v-bind:placeholder="origH"/>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Frame Rate Limit</label>
+        <div class="control">
+          <input class="input" v-model="origFrl" type="number" v-bind:placeholder="origFrl"/>
+        </div>
+      </div>
+                <a href="#" v-on:click="apply" class="button">Apply</a>
+    </div>
+      </section>
+      <section class="hero is-primary is-fullheight f" v-else >
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Enjoy!
+      </h1>
+      <h2 class="subtitle">
+        Programmed by BlockFade.
+      </h2>
+      <a class="button is-rounded" v-on:click="close">Close</a>
+      <a class="button is-rounded is-info" v-on:click="close">Launch Fortnite</a>
+    </div>
+  </div>
+</section>
+    </div>
+
+    <!--
+      Insert this line above script imports
+      this is done to make sure that jQuery and others are imported properly
+    -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <!-- import vue -->
+    <script src="./node_modules/vue/dist/vue.js"></script>
+
+    <!-- import bulma main.js -->
+    <script src="./js/bulma/main.js"></script>
+
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>

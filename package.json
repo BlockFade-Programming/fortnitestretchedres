@@ -1,0 +1,33 @@
+{
+  "name": "blockfades-fortnite-stretched-resolution-tool",
+  "productName": "Fortnite Stretched Resolution Tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "install": "electron-rebuild",
+    "package-all": "electron-packager .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --prune=true",
+    "package-win": "electron-packager . --icon=icon.ico --asar --platform=win32 --win32metadata.requested-execution-level=requireAdministrator --overwrite",
+    "package-linux": "electron-packager . --overwrite --platform=linux --prune=true"
+  },
+  "author": "BlockFade",
+  "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-rebuild": "^1.4.0",
+    "electron-packager": "^9.0.1",
+    "standard": "*"
+  },
+  "dependencies": {
+    "bulma": "^0.6.1",
+    "config-ini-parser": "^1.2.0",
+    "ini": "^1.3.5",
+    "vue": "^2.5.13"
+  },
+  "build": {
+    "win": {
+      "requested-execution-level": "highestAvailable"
+    }
+  }
+}
