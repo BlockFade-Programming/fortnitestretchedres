@@ -104,15 +104,15 @@ border-bottom-right-radius: 0px;
       <div class="field">
         <label class="label">Frame Rate Limit</label>
         <div class="control">
-          <input class="input" v-model="origFrl" type="number" v-bind:placeholder="origFrl"/>
+          <input class="input" v-model="frl" type="number" v-bind:placeholder="origFrl"/>
         </div>
       </div>
                 <a href="#" v-on:click="apply" class="button">Apply</a>
     </div>
       </section>
-      <section class="hero is-primary is-fullheight f" v-else >
+      <section class="hero is-primary is-fullheight f" v-bind:class="{ 'is-primary': success, 'is-danger': !success }" v-else >
   <div class="hero-body">
-    <div class="container">
+    <div class="container" v-if="success">
       <h1 class="title">
         Enjoy!
       </h1>
@@ -120,6 +120,15 @@ border-bottom-right-radius: 0px;
         Programmed by BlockFade.
       </h2>
       <a class="button is-rounded is-info" v-on:click="launch">Launch Fortnite</a>
+      <a class="button is-rounded" v-on:click="close">Close</a>
+    </div>
+    <div class="container" v-else>
+      <h1 class="title">
+        Error!
+      </h1>
+      <h2 class="subtitle">
+        Failed to write to file.<br>Make sure your settings file is not set to read-only!
+      </h2>
       <a class="button is-rounded" v-on:click="close">Close</a>
     </div>
   </div>

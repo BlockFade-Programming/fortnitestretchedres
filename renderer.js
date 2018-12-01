@@ -6,7 +6,7 @@ const remote = require('electron').remote
 const fs = require("fs")
 const ConfigIniParser = require("config-ini-parser").ConfigIniParser;
 const dialog = require('electron').remote.dialog
-
+const opn = require('opn');
 var delimiter = "\r\n"; //or "\n" for *nux
 
 var gameSettingsFile = null;
@@ -22,13 +22,24 @@ let vueApp = new Vue({
     origFrl: 60,
     frl: 60,
     credit: "Programmed by BlockFade",
-    active: true
+    active: true,
+    success: true,
+    message: "Enjoy!"
   },
   mounted: function() {
     gameSettingsFile = fs.readFileSync(process.env.LOCALAPPDATA + '/FortniteGame/Saved/Config/WindowsClient/GameUserSettings.ini', 'utf-8').toString();
     this.parse();
   },
   methods: {
+    launch: function()
+    {
+      opn('com.epicgames.launcher://apps/Fortnite?action=launch');
+      this.close();
+    },
+    error: function()
+    {
+      this.success = false;
+    },
     apply: function () {
     this.frl = Math.round(this.frl);
       parser.set("/Script/FortniteGame.FortGameUserSettings", "ResolutionSizeX", this.w);
@@ -43,10 +54,13 @@ let vueApp = new Vue({
       console.log("Saved?");
       fs.writeFile(process.env.LOCALAPPDATA + '/FortniteGame/Saved/Config/WindowsClient/GameUserSettings.ini', parser.stringify(delimiter), function(err) {
     if(err) {
+      vueApp.error();
         return console.log(err);
     }
-
-    console.log("The file was saved!");
+    else
+    {
+      vueApp.success = true;
+    }
 
 });
 this.active = false;
