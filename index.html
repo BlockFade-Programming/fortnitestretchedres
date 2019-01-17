@@ -107,6 +107,12 @@ border-bottom-right-radius: 0px;
           <input class="input" v-model="frl" type="number" v-bind:placeholder="origFrl"/>
         </div>
       </div>
+      <div class="field">
+        <label class="label">Fullscreen Mode </br>(0 = Fullscreen, 1 = Win. FS, 2 = Windowed)</label>
+        <div class="control">
+          <input class="input" v-model="fsm" type="number" v-bind:placeholder="fsm"/>
+        </div>
+      </div>
                 <a href="#" v-on:click="apply" class="button">Apply</a>
     </div>
       </section>

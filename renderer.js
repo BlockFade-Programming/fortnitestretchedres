@@ -21,6 +21,7 @@ let vueApp = new Vue({
     origH: 0,
     origFrl: 60,
     frl: 60,
+    fsm: 1,
     credit: "Programmed by BlockFade",
     active: true,
     success: true,
@@ -51,6 +52,7 @@ let vueApp = new Vue({
             parser.set("/Script/FortniteGame.FortGameUserSettings", "LastUserConfirmedDesiredScreenWidth", this.w);
             parser.set("/Script/FortniteGame.FortGameUserSettings", "LastUserConfirmedDesiredScreenHeight", this.h);
             parser.set("/Script/FortniteGame.FortGameUserSettings", "FrameRateLimit", this.frl);
+            parser.set("/Script/FortniteGame.FortGameUserSettings", "FullscreenMode", this.fsm);
       console.log("Saved?");
       fs.writeFile(process.env.LOCALAPPDATA + '/FortniteGame/Saved/Config/WindowsClient/GameUserSettings.ini', parser.stringify(delimiter), function(err) {
     if(err) {
@@ -80,6 +82,7 @@ this.active = false;
       this.frl = parser.getNumber("/Script/FortniteGame.FortGameUserSettings", "FrameRateLimit");
       this.frl = Math.round(this.frl);
       this.origFrl = this.frl;
+      this.fsm = parser.getNumer("/Script/FortniteGame.FortGameUserSettings", "FullscreenMode");
     }
   } // end of methods
 })
